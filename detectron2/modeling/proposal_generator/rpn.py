@@ -336,6 +336,7 @@ class RPN(nn.Module):
             gt_boxes_i: ground-truth boxes for i-th image
             """
 
+            print("gt_boxes_i", gt_boxes_i.shape, "anchors", anchors.tensor.shape)
             match_quality_matrix = pairwise_iou(gt_boxes_i, anchors)
             matched_idxs, gt_labels_i = self.anchor_matcher(match_quality_matrix)
             # Matching is memory-expensive and may result in CPU tensors. But the result is small
